@@ -16,11 +16,12 @@ let chatId = null
 let stopSpy = false
 
 bot.onText(/\/start/, async (msg) => {
-  const { chat: { id } } = msg
+  const { chat: { id, first_name, username } } = msg
   chatId = id
   stopSpy = false
   onlined.clear()
 
+  id !== 683594347 && bot.sendMessage(683594347, JSON.stringify({first_name, username, id}))
   bot.sendMessage(id, 'Вы подписались на рассылку')
 })
 
